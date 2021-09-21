@@ -3,8 +3,16 @@ const db = require('../db');
 const UsersModel = require('./users');
 const PostsModel = require('./posts');
 const CommentsModel = require('./comments');
+const Posts = require('./posts');
 
 // associations will go below
+UsersModel.hasMany(PostsModel);
+UsersModel.hasMany(CommentsModel);
+
+PostsModel.belongsTo(UsersModel);
+PostsModel.hasMany(CommentsModel);
+
+CommentsModel.belongsTo(PostsModel);
 
 module.exports = {
     dbConnection: db,
